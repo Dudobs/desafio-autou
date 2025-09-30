@@ -31,6 +31,10 @@ def classifies_email():
     filename = secure_filename(file.filename)
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
+    # lógica para ler arquivo e classificá-lo
+
+    os.remove(f"{app.config['UPLOAD_FOLDER']}/{filename}")
+
     return jsonify({"file": file.filename})
   
   return jsonify({"message": "Nenhum dado enviado"}), 400
